@@ -1,0 +1,18 @@
+Flask
+gunicorn
+Flask-SQLAlchemy
+sqlite3
+Werkzeug
+PyPDF2
+pdfplumber
+pymupdf  # (for 'fitz' module)
+fpdf2
+Pillow  # (for Image processing with PIL)
+pdf2docx
+pytesseract
+pdf2image
+python-docx
+reportlab
+sumy
+nltk
+pandas
