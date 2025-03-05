@@ -2,7 +2,6 @@ import re
 import nltk
 from datetime import datetime
 from flask import Flask, render_template, request, send_file, Response
-from flask_sqlalchemy import SQLAlchemy
 import PyPDF2
 import pdfplumber
 import fitz
@@ -24,22 +23,10 @@ import zipfile
 import pandas as pd
 from reportlab.lib.colors import HexColor
 import math
+import tempfile
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pdf_operations.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-
-class PDFFile(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    uploaded_pdf = db.Column(db.String(255), nullable=False)
-    manipulated_pdf = db.Column(db.String(255), nullable=True)
-    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
-# Create database tables
-with app.app_context():
-    db.create_all()
 
 @app.route('/')
 def index():
@@ -72,14 +59,6 @@ def merge():
         merge_pdfs_in_memory(pdf_buffers, output_buffer)
         output_buffer.seek(0)
         
-        # Store in database
-        pdf_record = PDFFile(
-            uploaded_pdf=','.join(uploaded_names),
-            manipulated_pdf='merged.pdf'
-        )
-        db.session.add(pdf_record)
-        db.session.commit()
-        
         return send_file(
             output_buffer,
             mimetype='application/pdf',
@@ -108,14 +87,6 @@ def split():
                 for pdf_name, pdf_data in split_pages:
                     zip_file.writestr(pdf_name, pdf_data.getvalue())  # Add each PDF to ZIP
             
-            # Save to database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"split_{filename}.zip"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
-            
             # Return ZIP file as a response
             zip_buffer.seek(0)
             return send_file(
@@ -140,14 +111,6 @@ def extract_text_route():
             # Extract text in memory
             text_content = extract_text_in_memory(file_buffer)
             text_buffer = io.BytesIO(text_content.encode('utf-8'))
-            
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"{filename}.txt"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
             
             return send_file(
                 text_buffer,
@@ -179,14 +142,6 @@ def extract_images_route():
                 for i, img_buffer in enumerate(image_buffers):
                     zip_file.writestr(f"image_{i+1}.png", img_buffer.getvalue())
             
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"images_{filename}.zip"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
-            
             zip_buffer.seek(0)
             return send_file(
                 zip_buffer,
@@ -212,14 +167,6 @@ def extract_links_route():
             links_text = '\n'.join(links)
             links_buffer = io.BytesIO(links_text.encode('utf-8'))
             
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"{filename}_links.txt"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
-            
             return send_file(
                 links_buffer,
                 mimetype='text/plain',
@@ -243,14 +190,6 @@ def encrypt():
             output_buffer = io.BytesIO()
             encrypt_pdf_in_memory(file_buffer, output_buffer, password)
             output_buffer.seek(0)
-            
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"encrypted_{filename}"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
             
             return send_file(
                 output_buffer,
@@ -276,14 +215,6 @@ def decrypt():
                 output_buffer = io.BytesIO()
                 decrypt_pdf_in_memory(file_buffer, output_buffer, password)
                 output_buffer.seek(0)
-                
-                # Store in database
-                pdf_record = PDFFile(
-                    uploaded_pdf=filename,
-                    manipulated_pdf=f"decrypted_{filename}"
-                )
-                db.session.add(pdf_record)
-                db.session.commit()
                 
                 return send_file(
                     output_buffer,
@@ -315,14 +246,6 @@ def rearrange():
                 rearrange_pages_in_memory(file_buffer, output_buffer, page_order)
                 output_buffer.seek(0)
                 
-                # Store in database
-                pdf_record = PDFFile(
-                    uploaded_pdf=filename,
-                    manipulated_pdf=f"rearranged_{filename}"
-                )
-                db.session.add(pdf_record)
-                db.session.commit()
-                
                 return send_file(
                     output_buffer,
                     mimetype='application/pdf',
@@ -349,14 +272,6 @@ def rotate():
             rotate_pages_in_memory(file_buffer, output_buffer, rotation)
             output_buffer.seek(0)
             
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"rotated_{filename}"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
-            
             return send_file(
                 output_buffer,
                 mimetype='application/pdf',
@@ -382,14 +297,6 @@ def add_metadata_route():
             add_metadata_in_memory(file_buffer, output_buffer, title, author)
             output_buffer.seek(0)
             
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"metadata_{filename}"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
-            
             return send_file(
                 output_buffer,
                 mimetype='application/pdf',
@@ -410,14 +317,6 @@ def read_metadata_route():
             
             # Read metadata in memory
             metadata = read_metadata_in_memory(file_buffer)
-            
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=None  # No manipulation, just reading
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
             
             return render_template('metadata_result.html', metadata=metadata)
     return render_template('read_metadata.html')
@@ -440,14 +339,6 @@ def create_pdf_route():
             image_name = None
         
         output_buffer.seek(0)
-        
-        # Store in database
-        pdf_record = PDFFile(
-            uploaded_pdf=image_name if image_name else 'text_only',
-            manipulated_pdf='created.pdf'
-        )
-        db.session.add(pdf_record)
-        db.session.commit()
         
         return send_file(
             output_buffer,
@@ -472,14 +363,6 @@ def optimize():
             output_buffer = io.BytesIO()
             optimize_pdf_in_memory(file_buffer, output_buffer)
             output_buffer.seek(0)
-            
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"optimized_{filename}"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
             
             return send_file(
                 output_buffer,
@@ -508,14 +391,6 @@ def convert_pdf_to_word():
                 docx_buffer = io.BytesIO()
                 convert_pdf_to_word_in_memory(file_buffer, docx_buffer)
                 docx_buffer.seek(0)
-                
-                # Store in database
-                pdf_record = PDFFile(
-                    uploaded_pdf=pdf_filename,
-                    manipulated_pdf=f"{pdf_filename.rsplit('.', 1)[0]}.docx"
-                )
-                db.session.add(pdf_record)
-                db.session.commit()
                 
                 return send_file(
                     docx_buffer,
@@ -554,14 +429,6 @@ def rename_pdf_route():
         pdf_buffer = io.BytesIO(file.read())
         pdf_buffer.seek(0)
         
-        # Store in database
-        pdf_record = PDFFile(
-            uploaded_pdf=secure_filename(file.filename),
-            manipulated_pdf=new_name
-        )
-        db.session.add(pdf_record)
-        db.session.commit()
-        
         return send_file(
             pdf_buffer,
             mimetype='application/pdf',
@@ -589,14 +456,6 @@ def convert_to_excel():
             excel_buffer = io.BytesIO()
             convert_pdf_to_excel_in_memory(file_buffer, excel_buffer)
             excel_buffer.seek(0)
-            
-            # Store in database
-            pdf_record = PDFFile(
-                uploaded_pdf=filename,
-                manipulated_pdf=f"{filename.rsplit('.', 1)[0]}.xlsx"
-            )
-            db.session.add(pdf_record)
-            db.session.commit()
             
             return send_file(
                 excel_buffer,
@@ -919,6 +778,9 @@ def extract_invoice_data_from_buffer(pdf_buffer):
             if field not in extracted_data:
                 extracted_data[field] = "N/A"
         
+        return pd.DataFrame([extracted_data 
+                extracted_data[field] = "N/A"
+        
         return pd.DataFrame([extracted_data])
     
     except Exception as e:
@@ -967,11 +829,5 @@ def summarize_pdf_from_buffer(pdf_buffer, sentence_count=5):
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in {"pdf"}
 
-# Add missing imports
-import tempfile
-import os
-
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    app.run
+    app.run(debug=True, port=5500)
