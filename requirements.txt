@@ -1,7 +1,6 @@
 Flask
 gunicorn
 Flask-SQLAlchemy
-sqlite3
 Werkzeug
 PyPDF2
 pdfplumber
