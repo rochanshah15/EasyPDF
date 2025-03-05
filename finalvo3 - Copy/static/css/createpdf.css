@@ -1,0 +1,103 @@
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    /* width: 100%; */
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1565C0;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border: 2px solid #1565C0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s;
+    resize: none;
+}
+
+textarea:focus, input[type="file"]:focus {
+    outline: none;
+    border-color: #64B5F6;
+    box-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
+}
+
+.file-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #1565C0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s;
+    background-color: #f8f9fa;
+}
+
+button {
+    background: #1565C0;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #0d47a1;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #1565C0;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

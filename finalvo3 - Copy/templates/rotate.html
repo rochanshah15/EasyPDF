@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate PDF Pages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rotate PDF Pages</h1>
+        <form action="{{ url_for('rotate') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf" accept=".pdf" required>
+            <select name="rotation" required>
+                <option value="90">90° Clockwise</option>
+                <option value="180">180°</option>
+                <option value="270">90° Counterclockwise(270)</option>
+            </select>
+            <button type="submit">Rotate Pages</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="back-link">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>
