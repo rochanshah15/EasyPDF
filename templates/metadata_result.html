@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Metadata Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/metadata_result.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Metadata Result</h1>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            {% for key, value in metadata.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('index') }}" class="back-link">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>
