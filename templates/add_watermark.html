@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Watermark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
+    <script>
+        function toggleWatermarkInput() {
+            var type = document.getElementById("watermark_type").value;
+            document.getElementById("text-watermark").style.display = (type === "text") ? "block" : "none";
+            document.getElementById("image-watermark").style.display = (type === "image") ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Add Watermark</h1>
+        <form action="{{ url_for('add_watermark') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf" accept=".pdf" required>
+            
+            <!-- Select Watermark Type -->
+            <select name="watermark_type" id="watermark_type" required onchange="toggleWatermarkInput()">
+                <option value="text">Text Watermark</option>
+                <option value="image">Image Watermark</option>
+            </select>
+
+            <!-- Text Watermark Input -->
+            <input type="text" id="text-watermark" name="watermark_text" placeholder="Enter Watermark Text">
+
+            <!-- Image Watermark Input (Hidden by Default) -->
+            <input type="file" id="image-watermark" name="watermark_image" accept="image/*" style="display:none;">
+
+            <!-- Position Selection -->
+            <select name="position" required>
+                <option value="top-left">Top Left</option>
+                <option value="top-right">Top Right</option>
+                <option value="center">Center</option>
+                <option value="bottom-left">Bottom Left</option>
+                <option value="bottom-right">Bottom Right</option>
+            </select>
+
+            <button type="submit">Add Watermark</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="back-link">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>

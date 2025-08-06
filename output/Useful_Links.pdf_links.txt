@@ -1,0 +1,10 @@
+https://www.google.com
+https://www.wikipedia.org
+https://www.youtube.com
+https://www.github.com
+https://stackoverflow.com
+https://www.khanacademy.org
+https://www.bbc.com/news
+https://www.nationalgeographic.com
+https://www.coursera.org
+https://www.ted.com/talks

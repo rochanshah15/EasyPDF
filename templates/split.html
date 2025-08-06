@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h1>Split PDF</h1>
+    <form action="{{ url_for('split') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="pdf" accept=".pdf" required>
+        <button type="submit">Split PDF</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-link">⬅ Back to Home</a>
+</div>
+</body>
+</html>
+
