@@ -1,0 +1,365 @@
+AI Transformation Playbook
+How to lead your company into the AI era
+by Andrew Ng
+AI (Artificial Intelligence) technology is now
+1. Execute pilot projects to
+poised to transform every industry, just as
+gain momentum
+electricity did 100 years ago. Between now and
+2030, it will create an estimated $13 trillion It is more important for your first few AI projects
+of GDP growth.1 While it has already created to succeed rather than be the most valuable AI
+projects. They should be meaningful enough so
+tremendous value in leading technology
+that the initial successes will help your company
+companies such as Google, Baidu, Microsoft and
+gain familiarity with AI and also convince others
+Facebook, much of the additional waves of value
+in the company to invest in further AI projects;
+creation will go beyond the software sector.
+they should not be so small that others would
+This AI Transformation Playbook draws on consider it trivial. The important thing is to get
+insights gleaned from leading the Google Brain the flywheel spinning so that your AI team can
+team and the Baidu AI Group, which played gain momentum.
+leading roles in transforming both Google and
+Suggested characteristics for the first few AI
+Baidu into great AI companies. It is possible
+projects:
+for any enterprise to follow this Playbook and
+• It should ideally be possible for a new or
+become a strong AI company, though these
+external AI team (which may not have deep
+recommendations are tailored primarily for
+domain knowledge about your business)
+larger enterprises with a market cap/valuation
+to partner with your internal teams (which
+from $500M to $500B.
+have deep domain knowledge) and build AI
+These are the steps I recommend for transforming solutions that start showing traction within
+your enterprise with AI, which I will explain in 6-12 months
+this playbook: • The project should be technically feasible.
+Too many companies are still starting
+projects that are impossible using today’s AI
+1. Execute pilot projects to gain
+technology; having trusted AI engineers do
+momentum
+due diligence on a project before kickoff will
+2. Build an in-house AI team increase your conviction in its feasibility.
+• Have a clearly defined and measurable
+3. Provide broad AI training
+objective that creates business value.
+4. Develop an AI strategy
+When I was leading the Google Brain team,
+there was significant skepticism within Google
+5. Develop internal and external
+(and more broadly, around the world) of deep
+communications
+learning technology. To help the team gain
+momentum, I chose the Google Speech team
+as my first internal customer, and we worked
+closely with them to make Google Speech
+1 https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-
+from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy recognition much more accurate.
+© DeepLearning.AI All rights reserved. | deeplearning.ai ©DeepLearning.AI All rights reserved. | deeplearning.a1i
+Speech recognition is a meaningful project within The key responsibilities of the AI unit are:
+Google, but not the most important one—for
+• Build up an AI capability to support the whole
+example, it is less important to the company
+company.
+bottom line than applying AI to web search or
+advertising. But by making the Speech team • Execute an initial sequence of cross-functional
+more successful using deep learning, other projects to support different divisions/business
+teams started to gain faith in us, which enabled units with AI projects. After completing the
+the Google Brain team to gain momentum. initial projects, set up repeated processes to
+continuously deliver a sequence of valuable
+Once other teams started to see the success of
+AI projects.
+Google Speech working with Google Brain, we
+• Develop consistent standards for recruiting
+were able to acquire more internal customers.
+and retention.
+The team’s second major internal customer
+was Google Maps, which used deep learning • Develop company-wide platforms that are
+to improve the quality of map data. With two useful to multiple divisions/business units
+successes, I started conversations with the and are unlikely to be developed by an
+advertising team. Building up momentum individual division. For example, consider
+gradually led to more and more successful AI working with the CTO/CIO/CDO to develop
+projects. This process is a repeatable model that unified data warehousing standards.
+you can use in your company. Many companies are organized with multiple
+business units reporting to the CEO. With a new
+AI unit, you’ll be able to matrix in AI talent to
+2. Build an in-house AI team
+the different divisions to drive cross-functional
+While outsourced partners with deep technical projects.
+AI expertise can help you gain that initial
+momentum faster, in the long term it will be
+more efficient to execute some projects with an
+in-house AI team. Further, you will want to keep
+some projects within the company to build a
+more unique competitive advantage.
+It is important to have buy-in from the C-suite
+to build this internal team. During the rise of
+the internet, hiring a CIO was a turning point for
+many companies to have a cohesive strategy for
+using the internet. In contrast, the companies
+that ran many independent experiments—
+ranging from digital marketing to data science
+experiments to new website launches—failed to
+leverage internet capabilities if these small pilot
+projects did not manage to scale to transform
+the rest of the company.
+In the AI era, a key moment for many companies New job descriptions and new team organizations
+will again be the formation of a centralized AI will emerge. The way I now organize the work
+team that can help the whole company. This AI of my teams in roles like a Machine Learning
+team could sit under the CTO, CIO, or CDO (Chief Engineer, Data Engineer, Data Scientist, and AI
+Data Officer or Chief Digital Officer) function if Product Manager is different than the pre-AI
+they have the right skillset. It could also be led by era. A good AI leader will be able to advise you
+a dedicated CAIO (Chief AI Officer). on setting up the right processes.
+© DeepLearning.AI All rights reserved. | deeplearning.ai 2
+There is currently a war for AI talent, and However, a notional education plan may look like
+unfortunately most companies will have a this:
+hard time hiring a Stanford AI PhD student (or
+perhaps even a Stanford AI undergrad). Since
+1. Executives and senior business leaders:
+the talent war is largely zero-sum in the short
+(≥4 hours training)
+term, working with a recruiting partner that can
+help you build an AI team will give you a non-
+GOAL:
+trivial advantage. However, providing training
+Enable executives to understand what AI can
+to your existing team can also be a good way to
+do for your enterprise, begin developing AI
+create a lot of new talent in-house.
+strategy, make appropriate resource allocation
+decisions, and collaborate smoothly with an AI
+3. Provide broad AI training team that is supporting valuable AI projects.
+No company today has enough in-house AI talent.
+While the media reports of high AI salaries are CURRICULUM:
+over-hyped (the numbers quoted in press tend to • Basic business understanding of AI including
+be outliers), AI talent is hard to find. Fortunately, basic technology, data, and what AI can and
+with the rise of digital content, including MOOCs
+cannot do.
+(massive open online courses) such as Coursera,
+ebooks, and YouTube videos, it is more cost • Understanding of AI’s impact on corporate
+effective than ever to train up large numbers of strategy.
+employees in new skills such as AI. The smart
+CLO (Chief Learning Officer) knows that their • Case studies on AI applications to adjacent
+job is to curate, rather than create content, and industries or to your specific industry.
+then to establish processes to ensure employees
+complete the learning experiences.
+2. Leaders of divisions carrying out AI
+Ten years ago, employee training meant hiring projects: (≥12 hours training)
+consultants to come to your office to give
+lectures. But this was inefficient, and the ROI was GOAL:
+unclear. In contrast, digital content is much more Division leaders should be able to set direction
+affordable and also gives employees a more for AI projects, allocate resources, monitor and
+personalized experience. If you do have the budget track progress, and make corrections as needed
+to hire consultants, the in-person content should
+to ensure successful project delivery.
+complement the online content. (This is called the
+“flipped classroom” pedagogy. I have found that,
+CURRICULUM:
+when implemented correctly, this results in faster
+• Basic business understanding of AI including
+learning and a more enjoyable learning experience.
+basic technology, data, and what AI can and
+For example, at Stanford University, my on-campus
+cannot do.
+deep learning class is taught using this form of
+pedagogy.) Hiring a few AI experts to deliver some
+• Basic technical understanding of AI, including
+in-person content can also help motivate your
+major classes of algorithms and their
+employees to learn these AI techniques.
+requirements.
+AI will transform many different jobs. You should
+• Basic understanding of the workflow
+give everyone the knowledge they will need to
+and processes of AI projects, roles
+adapt to their new roles in the AI era. Consulting
+with an expert will allow you to develop a and responsibilities in AI teams, and
+customized curriculum for your team. management of AI team.
+© DeepLearning.AI All rights reserved. | deeplearning.ai 3
+is to build several difficult assets that are broadly
+3. AI engineer trainees:
+aligned with a coherent strategy. It thus becomes
+(≥100 hours training)
+difficult for a competitor to replicate all of these
+GOAL: assets simultaneously.
+Newly trained AI engineers should be able to
+Leverage AI to create an advantage specific
+gather data, train AI models, and deliver specific
+Rather than trying
+to your industry sector:
+AI projects.
+to compete “generally” in AI with leading tech
+companies such as Google, I recommend
+CURRICULUM:
+instead becoming a leading AI company in your
+• Deep technical understanding of machine
+industry sector, where developing unique AI
+learning and deep learning; basic understanding
+capabilities will allow you to gain a competitive
+of other AI tools.
+advantage. How AI affects your company’s
+strategy will be industry- and situation-specific.
+• Understanding of available (open-source and
+other 3rd party) tools for building AI and data
+Design strategies aligned with the “Virtuous
+systems.
+In many
+Cycle of AI” positive-feedback loop:
+industries, we will see data accumulation
+• Ability to implement AI teams’ workflow and
+leading to a defensible business:
+processes.
+• Additionally: Ongoing education to keep up-
+to-date with evolving AI technology
+4. Develop an AI strategy
+An AI strategy will guide your company toward
+creating value while also building defensible
+moats. Once teams start to see the success
+of the initial AI projects and form a deeper
+understanding of AI, you will be able to identify
+the places where AI can create the most value
+and focus resources on those areas.
+Some executives will think that developing
+an AI strategy should be the first step. In my
+experience, most companies will not be able to
+develop a thoughtful AI strategy until it has had
+some basic experience with AI, which partial
+progress in steps 1-3 will give you.
+The way you build defensible moats is also For example, leading web search engines such
+evolving with AI. Here are some approaches to as Google, Baidu, Bing and Yandex have a huge
+consider: data asset showing them what links a user clicks
+on after different search queries. This data
+Build several difficult AI assets that are helps the companies build a more accurate
+broadly aligned with a coherent strategy: search engine product (A), which in turn helps
+AI is enabling companies to build unique them acquire more users (B), which in turn
+competitive advantages in new ways. Michael results in their having even more user data (C).
+Porter’s seminal writings on business strategy This positive feedback loop is hard for
+show that one way to start a defensible business competitors to break into.
+© DeepLearning.AI All rights reserved. | deeplearning.ai 4
+Data is a key asset for AI systems. Thus, many allows you to acquire users faster than your
+great AI companies also have a sophisticated competitors, it could be leveraged into building
+data strategy. Key elements of your data a moat that is defensible through platform
+strategy may include: dynamics. More broadly, you can also use AI
+as a key component of low cost strategy, high
+Useful AI
+Strategic data acquisition: value, or other business strategies.
+systems can be built with anywhere from
+100 data points (“small data”) to 100,000,000
+data points (“big data”). But having more 5. Develop internal and external
+data almost never hurts. AI teams are using
+communications
+very sophisticated, multi-year strategies to
+acquire data, and specific data acquisition AI will affect your business significantly. To the
+strategies are industry- and situation-specific. extent that it affects your key stakeholders,
+For example, Google and Baidu both have you should run a communications program
+numerous free products that do not monetize to ensure alignment. Here is what you should
+but allow them to acquire data that can be consider for each audience:
+monetized elsewhere.
+Leading AI companies
+Investor Relations:
+If you have 50 such as Google and Baidu are now much more
+Unified data warehouses:
+different databases siloed under the control valuable companies in part because of their AI
+of 50 different VPs or divisions, it will be nearly capabilities and the impact that AI has on their
+impossible for an engineer or for AI software bottom lines. Explaining a clear value creation
+to get access to this data and “connect the thesis for AI in your company, describing your
+dots.” Instead, consider centralizing your data growing AI capabilities, and having a thoughtful
+into one or at most a small number of data AI strategy, will help investors value your
+warehouses. company appropriately.
+Recognize what data is valuable, and Government Relations: Companies in
+what is not: It is not true that having many highly regulated industries (self-driving cars,
+terabytes of data automatically means an healthcare) face unique challenges to stay
+AI team will be able to create value from compliant. Developing a credible, compelling
+that data. Expecting an AI team to magically AI story that explains the value and benefits
+create value from a large dataset is a formula your project can bring to an industry or society,
+that comes with a high chance of failure, is an important step in building trust and
+and I have tragically seen CEOs over-invest goodwill. This should be coupled with direct
+in collecting low-value data, or even acquire communication and ongoing dialogue with
+a company for its data only to realize the regulators as you rollout your project.
+target company’s many terabytes of data is
+not useful. Avoid this mistake by bringing an Customer/User Education: AI will likely bring
+AI team in early during your process of data significant benefits to your customers, so make
+acquisition, and let them help you prioritize sure the appropriate marketing and product
+what types of data to acquire and save. roadmap messages are disseminated.
+Because of the scarcity
+Create network effect and platform Talent/Recruitment:
+Finally, AI can also be used to of AI talent, strong employer branding will have
+advantages:
+build more traditional moats. For example, a significant effect on your ability to attract and
+platforms with network effects are highly retain such talent. AI engineers want to work
+defensible businesses. They often have a on exciting and meaningful projects. A modest
+natural “winner takes all” dynamic that forces effort to showcase your initial successes can go
+companies to either grow fast or die. If AI a long way.
+© DeepLearning.AI All rights reserved. | deeplearning.ai 5
+Because AI today Deep learning, one of the fastest growing areas
+Internal Communications:
+is still poorly understood and Artificial General of AI, is showing parallels to the rise of the
+Intelligence specifically has been over-hyped, internet. Today, we find that:
+there is fear, uncertainty and doubt. Many
+employees are also concerned about their
+Any typical company + Deep Learning
+jobs being automated by AI, though this varies
+technology ≠ AI company
+widely by culture (for example, this fear appears
+much more in the US than in Japan). Clear
+For your company to become great at AI, you
+internal communications both to explain AI
+will have to organize your company to do the
+and to address such employees’ concerns will
+things that AI lets you do really well.
+reduce any internal reluctance to adopt AI.
+For your company to be great at AI, you
+A historical note, important for must have:
+your success
+Resources to systematically execute
+Understanding how the internet transformed on multiple valuable AI projects: AI
+industries is useful for navigating the rise of AI. companies have the outsourced and/or in-
+There is a mistake that many businesses made house technology and talent to systematically
+navigating the rise of the internet that I hope execute on multiple AI projects that deliver
+direct value to the business.
+you will avoid as you navigate the rise of AI.
+There
+We learned in the internet era that: Sufficient understanding of AI:
+should be general understanding of AI,
+with appropriate processes in place to
+Shopping Mall + Website ≠ internet company systematically identify and select valuable AI
+projects to work on.
+Even if a shopping mall built a website and sold
+The company’s strategy
+Strategic direction:
+things on a website, that by itself did not turn
+is broadly aligned to succeed in an AI-
+the shopping mall into a true internet company.
+powered future.
+What defines a true internet company is: Have
+you organized your company to do the things
+that the internet lets you do really well?
+Turning your great company into a great
+For example, internet companies engage in AI company is challenging but feasible with
+the support of great partners. My team at
+pervasive A/B testing, in which we routinely
+DeepLearning AI is committed to helping
+launch two versions of a website and measure
+partners with their AI transformations, and I will
+which works better. An internet company may
+continue to share additional best practices.
+even have hundreds of experiments running
+at the same time; this is very hard to do with a
+An AI Transformation program may take 2-3
+physical shopping mall. Internet companies can
+years, but you should expect to see initial concrete
+also ship a new product every week and thus
+results within 6-12 months. By investing in an
+learn much faster than a shopping mall that
+AI transformation, you will stay ahead of your
+might update its design only once per quarter. competitors and leverage AI capabilities to
+Internet companies have unique job descriptions significantly advance your company.
+for roles such as product manager and software
+engineer, and those jobs have unique workflows Andrew Ng
+and processes for how they work together.
+Chairman and CEO, DeepLearning
+© DeepLearning.AI All rights reserved. | deeplearning.ai 6

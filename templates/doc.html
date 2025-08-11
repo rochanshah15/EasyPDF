@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyPDF - Documentation</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script
+        async
+        crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_dGhhbmtmdWwtc2hhZC02Mi5jbGVyay5hY2NvdW50cy5kZXYk"
+        src="https://thankful-shad-62.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+        type="text/javascript"
+    ></script>
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            transition: all 0.3s ease-in-out;
+            overflow-x: hidden;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            padding: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .navbar {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Documentation Styles */
+        .documentation {
+            background-color: #ffffff;
+            padding: 50px 0;
+        }
+
+        body.dark-mode .documentation {
+            background-color: #1e1e1e;
+        }
+
+        .doc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .doc-sidebar {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        body.dark-mode .doc-sidebar {
+            background: #2d2d2d;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .doc-sidebar h5 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1565C0;
+        }
+
+        body.dark-mode .doc-sidebar h5 {
+            color: #90CAF9;
+        }
+
+        .doc-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doc-sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .doc-sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        body.dark-mode .doc-sidebar ul li a {
+            color: #e0e0e0;
+        }
+
+        .doc-sidebar ul li a:hover {
+            background-color: rgba(33, 150, 243, 0.1);
+            color: #1565C0;
+            padding-left: 15px;
+        }
+
+        body.dark-mode .doc-sidebar ul li a:hover {
+            background-color: rgba(144, 202, 249, 0.1);
+            color: #90CAF9;
+        }
+
+        .doc-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        body.dark-mode .doc-content {
+            background: #2d2d2d;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .doc-content h2 {
+            color: #1565C0;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        body.dark-mode .doc-content h2 {
+            color: #90CAF9;
+            border-bottom-color: #444;
+        }
+
+        .doc-content h3 {
+            color: #1565C0;
+            font-weight: 600;
+            margin: 30px 0 15px;
+        }
+
+        body.dark-mode .doc-content h3 {
+            color: #90CAF9;
+        }
+
+        .doc-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .doc-content ul {
+            margin-bottom: 20px;
+        }
+
+        .doc-content ul li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .doc-section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .doc-section {
+            border-bottom-color: #444;
+        }
+
+        .doc-section:last-child {
+            border-bottom: none;
+        }
+
+        .feature-steps {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        body.dark-mode .feature-steps {
+            background-color: #333;
+        }
+
+        .feature-steps ol {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .feature-steps ol li {
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .divider {
+            background-color: #444;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1565C0;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        body.dark-mode .footer {
+            background: #1a1a1a;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Buttons */
+        .btn-outline-light {
+            border-width: 2px;
+            font-weight: 500;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            cursor: pointer;
+            padding: 8px 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .doc-sidebar {
+                margin-bottom: 30px;
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top" data-aos="fade-down" data-aos-duration="1000">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">EasyPDF</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index')}}">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="documentation.html">Documentation</a>
+                    </li>
+                    <li class="nav-item me-3" id="auth-container">
+                        <button class="btn btn-outline-light" id="login-btn"style="transform:scale(0.8);margin-left:1rem;"><b>Login</b></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeIcon" style="transform:scale(0.7);margin-left:-1rem;">🌙</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container">
+            <h1>User Documentation</h1>
+            <p>A comprehensive guide to using all features of the EasyPDF application. Learn how to manipulate PDF files with ease.</p>
+        </div>
+    </div>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="doc-container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3" data-aos="fade-right" data-aos-delay="100">
+                    <div class="doc-sidebar">
+                        <h5>Table of Contents</h5>
+                        <ul>
+                            <li><a href="#getting-started">Getting Started</a></li>
+                            <li><a href="#features">Features and Usage</a>
+                                <ul class="ps-3 mt-2">
+                                    <li><a href="#merge-pdfs">Merge PDFs</a></li>
+                                    <li><a href="#split-pdf">Split PDF</a></li>
+                                    <li><a href="#extract-text">Extract Text</a></li>
+                                    <li><a href="#extract-images">Extract Images</a></li>
+                                    <li><a href="#extract-links">Extract Links</a></li>
+                                    <li><a href="#encrypt-pdf">Encrypt PDF</a></li>
+                                    <li><a href="#decrypt-pdf">Decrypt PDF</a></li>
+                                    <li><a href="#rearrange-pages">Rearrange Pages</a></li>
+                                    <li><a href="#rotate-pages">Rotate Pages</a></li>
+                                    <li><a href="#add-metadata">Add Metadata</a></li>
+                                    <li><a href="#read-metadata">Read Metadata</a></li>
+                                    <li><a href="#create-pdf">Create PDF</a></li>
+                                    <li><a href="#optimize-pdf">Optimize PDF</a></li>
+                                    <li><a href="#convert-pdf-to-word">Convert PDF to Word</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#troubleshooting">Troubleshooting</a></li>
+                            <li><a href="#faqs">FAQs</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="col-lg-9" data-aos="fade-left" data-aos-delay="200">
+                    <div class="doc-content">
+                        <h2>PDF Manipulation App - User Documentation</h2>
+                        <p>Welcome to the PDF Manipulation App! This application allows you to perform various operations on PDF files, such as merging, splitting, extracting text/images/links, encrypting, decrypting, rearranging pages, rotating pages, adding metadata, creating PDFs, optimizing PDFs, and converting PDFs to Word documents. Below is a detailed guide on how to use the app effectively.</p>
+                        
+                        <div class="doc-section" id="getting-started">
+                            <h3>Getting Started</h3>
+                            <ol>
+                                <li>Access the App: Open your web browser and navigate to the app's URL (e.g., http://localhost:5500).</li>
+                                <li>Upload Files: Ensure your PDF files are ready for upload. The app supports .pdf files only.</li>
+                                <li>Download Results: After performing an operation, the app will provide a downloadable file.</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="doc-section" id="features">
+                            <h3>Features and Usage</h3>
+                            
+                            <div id="merge-pdfs">
+                                <h4><i class="fas fa-object-group me-2"></i>Merge PDFs</h4>
+                                <p>Purpose: Combine multiple PDF files into a single PDF.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Merge section.</li>
+                                        <li>Upload at least two PDF files using the file picker.</li>
+                                        <li>Click Merge.</li>
+                                        <li>Download the merged PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="split-pdf">
+                                <h4><i class="fas fa-cut me-2"></i>Split PDF</h4>
+                                <p>Purpose: Split a PDF file into individual pages.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Split section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Split.</li>
+                                        <li>Download a ZIP file containing all the split pages as separate PDFs.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="extract-text">
+                                <h4><i class="fas fa-font me-2"></i>Extract Text</h4>
+                                <p>Purpose: Extract text from a PDF file and save it as a .txt file.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Extract Text section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Extract Text.</li>
+                                        <li>Download the extracted text file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="extract-images">
+                                <h4><i class="fas fa-images me-2"></i>Extract Images</h4>
+                                <p>Purpose: Extract images from a PDF file and save them as a new PDF.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Extract Images section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Extract Images.</li>
+                                        <li>Download the PDF containing all extracted images.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="extract-links">
+                                <h4><i class="fas fa-link me-2"></i>Extract Links</h4>
+                                <p>Purpose: Extract all hyperlinks from a PDF file and save them as a .txt file.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Extract Links section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Extract Links.</li>
+                                        <li>Download the text file containing all links.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="encrypt-pdf">
+                                <h4><i class="fas fa-lock me-2"></i>Encrypt PDF</h4>
+                                <p>Purpose: Add a password to a PDF file to restrict access.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Encrypt section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Enter a password in the provided field.</li>
+                                        <li>Click Encrypt.</li>
+                                        <li>Download the encrypted PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="decrypt-pdf">
+                                <h4><i class="fas fa-unlock me-2"></i>Decrypt PDF</h4>
+                                <p>Purpose: Remove password protection from a PDF file.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Decrypt section.</li>
+                                        <li>Upload a password-protected PDF file.</li>
+                                        <li>Enter the password in the provided field.</li>
+                                        <li>Click Decrypt.</li>
+                                        <li>Download the decrypted PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="rearrange-pages">
+                                <h4><i class="fas fa-sort me-2"></i>Rearrange Pages</h4>
+                                <p>Purpose: Reorder pages in a PDF file.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Rearrange section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Enter the desired page order (e.g., 3,1,2).</li>
+                                        <li>Click Rearrange.</li>
+                                        <li>Download the rearranged PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="rotate-pages">
+                                <h4><i class="fas fa-redo me-2"></i>Rotate Pages</h4>
+                                <p>Purpose: Rotate all pages in a PDF file by a specified angle (90°, 180°, or 270°).</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Rotate section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Select the rotation angle.</li>
+                                        <li>Click Rotate.</li>
+                                        <li>Download the rotated PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="add-metadata">
+                                <h4><i class="fas fa-edit me-2"></i>Add Metadata</h4>
+                                <p>Purpose: Add or modify metadata (title, author) in a PDF file.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Add Metadata section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Enter the title and author in the provided fields.</li>
+                                        <li>Click Add Metadata.</li>
+                                        <li>Download the updated PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="read-metadata">
+                                <h4><i class="fas fa-book-open me-2"></i>Read Metadata</h4>
+                                <p>Purpose: View the metadata (title, author, etc.) of a PDF file.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Read Metadata section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Read Metadata.</li>
+                                        <li>View the metadata on the results page.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="create-pdf">
+                                <h4><i class="fas fa-file-pdf me-2"></i>Create PDF</h4>
+                                <p>Purpose: Create a new PDF from text and/or an image.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Create PDF section.</li>
+                                        <li>Enter text in the text box.</li>
+                                        <li>(Optional) Upload an image.</li>
+                                        <li>Click Create PDF.</li>
+                                        <li>Download the newly created PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="optimize-pdf">
+                                <h4><i class="fas fa-bolt me-2"></i>Optimize PDF</h4>
+                                <p>Purpose: Reduce the file size of a PDF.</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Optimize section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Optimize.</li>
+                                        <li>Download the optimized PDF file.</li>
+                                    </ol>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                            
+                            <div id="convert-pdf-to-word">
+                                <h4><i class="fas fa-file-word me-2"></i>Convert PDF to Word</h4>
+                                <p>Purpose: Convert a PDF file to a Word document (.docx).</p>
+                                <div class="feature-steps">
+                                    <strong>Steps:</strong>
+                                    <ol>
+                                        <li>Go to the Convert PDF to Word section.</li>
+                                        <li>Upload a PDF file.</li>
+                                        <li>Click Convert.</li>
+                                        <li>Download the converted Word document.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-section" id="troubleshooting">
+                            <h3>Troubleshooting</h3>
+                            <ul>
+                                <li><strong>File Not Uploading:</strong> Ensure the file is in PDF format and does not exceed the size limit.</li>
+                                <li><strong>Invalid Password:</strong> Double-check the password entered for decryption.</li>
+                                <li><strong>No Text/Images Found:</strong> The PDF may be scanned or contain no selectable text/images.</li>
+                                <li><strong>Conversion Errors:</strong> If the PDF is scanned, the app will use OCR to extract text, which may take longer.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="doc-section" id="faqs">
+                            <h3>FAQs</h3>
+                            <ol>
+                                <li>
+                                    <strong>Can I merge more than two PDFs?</strong>
+                                    <p>Yes, you can merge as many PDFs as you want. But currently only 2.</p>
+                                </li>
+                                <li>
+                                    <strong>What happens if I upload a scanned PDF?</strong>
+                                    <p>The app will use OCR to extract text or images, but the accuracy depends on the quality of the scan.</p>
+                                </li>
+                                <li>
+                                    <strong>Is there a file size limit?</strong>
+                                    <p>The app does not impose a strict limit, but larger files may take longer to process.</p>
+                                </li>
+                                <li>
+                                    <strong>Can I rotate specific pages instead of all pages?</strong>
+                                    <p>Currently, the app rotates all pages in the PDF. For selective rotation, you can split the PDF, rotate individual pages, and then merge them back.</p>
+                                </li>
+                                <li>
+                                    <strong>How secure is the encryption?</strong>
+                                    <p>The app uses standard PDF encryption, which is secure for most use cases.</p>
+                                </li>
+                            </ol>
+                            <p class="mt-4">Enjoy using the PDF Manipulation App! If you have any questions or encounter issues, feel free to reach out for support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>About EasyPDF</h5>
+                    <p>We provide professional PDF solutions that make document management simple and efficient for everyone.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="index.html#testimonials">Testimonials</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates and tips.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-light" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <div class="social-links mb-3">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="mb-0">&copy; 2025 EasyPDF. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            
+            // Save preference to localStorage
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                localStorage.removeItem("darkMode");
+            }
+
+            // Change icon
+            let icon = document.getElementById("darkModeIcon");
+            icon.innerHTML = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+        }
+
+        // Check and apply dark mode from localStorage
+        window.addEventListener("DOMContentLoaded", () => {
+            if (localStorage.getItem("darkMode") === "enabled") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("darkModeIcon").innerHTML = "☀️";
+            }
+        });
+
+        // Clerk Authentication
+        window.addEventListener('load', async function () {
+            await Clerk.load();
+            console.log("ClerkJS is loaded");
+
+            const authContainer = document.getElementById('auth-container');
+            const loginBtn = document.getElementById('login-btn');
+
+            loginBtn.addEventListener('click', () => {
+                if (Clerk.user) {
+                    console.log("User is already logged in.");
+                } else {
+                    Clerk.openSignIn();
+                }
+            });
+
+            // Check if user is logged in and update UI
+            if (Clerk.user) {
+                authContainer.innerHTML = `<div id="user-button-navbar"></div>`;
+                Clerk.mountUserButton(document.getElementById('user-button-navbar'));
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

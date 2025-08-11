@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Links from PDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Extract Links from PDF</h1>
+        <form action="{{ url_for('extract_links_route') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf" accept=".pdf" required>
+            <button type="submit">Extract Links</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="back-link">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>
